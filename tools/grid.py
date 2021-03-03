@@ -1,7 +1,8 @@
+from abc import ABC
 from manim import *
 
 
-class GridAxes(VMobject):
+class GridAxes(VMobject, ABC):
 
     def __init__(self, height=4, width=7, color_axes=BLUE, **kwargs):
         self.height = height
@@ -33,7 +34,7 @@ class GridAxes(VMobject):
             self.add(num)
 
 
-class Grid(GridAxes):
+class Grid(GridAxes, ABC):
 
     def __init__(self, line_type="dashed", color_lines=WHITE, **kwargs):
         self.line_type = line_type
@@ -58,7 +59,3 @@ class Grid(GridAxes):
 
         self.add(x_lines)
         self.add(y_lines)
-
-class Temp(Scene):
-    def construct(self):
-        self.add(Grid())
