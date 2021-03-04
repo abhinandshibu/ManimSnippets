@@ -3,6 +3,23 @@ from manim import *
 
 
 class GridAxes(VMobject, ABC):
+    """Provides background axes which can be used to aid visual positioning
+    of objects.
+
+    Sources
+    -------
+
+    https://github.com/abhinandshibu/ThreeAnimators
+
+    Examples
+    --------
+
+    Adds background axes
+
+    class BackgroundAxes(Scene):
+        def construct(self):
+            self.add(GridAxes())
+    """
 
     def __init__(self, height=4, width=7, color_axes=BLUE, **kwargs):
         self.height = height
@@ -37,6 +54,23 @@ class GridAxes(VMobject, ABC):
 
 
 class Grid(GridAxes, ABC):
+    """Provides a background grid which can be used to aid visual positioning
+    of objects.
+
+    Sources
+    -------
+
+    https://github.com/abhinandshibu/ThreeAnimators
+
+    Examples
+    --------
+
+    Adds background grid
+
+    class BackgroundGrid(Scene):
+        def construct(self):
+            self.add(Grid())
+    """
 
     def __init__(self, line_type="dashed", color_lines=WHITE, **kwargs):
         self.line_type = line_type

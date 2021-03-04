@@ -2,7 +2,7 @@ from manim import *
 from _tools.grid import GridAxes
 
 
-class BackgroundGrid(Scene):
+class BackgroundAxes(Scene):
     """Provides background axes which can be used to aid visual positioning
     of objects.
 
