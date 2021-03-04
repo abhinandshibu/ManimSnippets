@@ -1,5 +1,5 @@
 from manim import *
-from tools.grid import GridAxes
+from _tools.grid import GridAxes
 
 
 class BackgroundGrid(Scene):
@@ -9,6 +9,7 @@ class BackgroundGrid(Scene):
     tools_required:: GridAxes
     alternate_names::
     related_snippets:: BackgroundGrid
+    sources:: https://github.com/abhinandshibu/ThreeAnimators
     """
 
     def construct(self):

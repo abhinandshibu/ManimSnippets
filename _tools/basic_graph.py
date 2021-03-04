@@ -1,9 +1,16 @@
+from abc import ABC
+
 from manim import *
-from tools.font_centering_pos import FUTURA_CENTERING_POS
+from _tools.font_centering_pos import FUTURA_CENTERING_POS
 
 
-class BasicGraph(VMobject):
+class BasicGraph(VMobject, ABC):
     """An undirected graph. Which focuses on aesthetics for teaching purposes.
+
+    Sources
+    -------
+
+    https://github.com/abhinandshibu/ThreeAnimators
 
     Parameters
     ----------
