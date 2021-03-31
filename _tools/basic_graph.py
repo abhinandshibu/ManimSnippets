@@ -1,16 +1,10 @@
-from abc import ABC
-
 from manim import *
+from abc import ABC
 from _tools.font_centering_pos import FUTURA_CENTERING_POS
 
 
 class BasicGraph(VMobject, ABC):
     """An undirected graph. Which focuses on aesthetics for teaching purposes.
-
-    Sources
-    -------
-
-    https://github.com/abhinandshibu/ThreeAnimators
 
     Parameters
     ----------
@@ -49,23 +43,34 @@ class BasicGraph(VMobject, ABC):
         describing how the weight should be placed relative to the middle
         of the line eg. (-0.25, 0.2).
 
-    .. note::
+    note::
 
         If label ``font=futura`` then it will automatically center the text
         for aesthetics. Individual capital letters were centered with reference
         to a circle of ``radius=0.5``.
 
-    .. note::
+    note::
 
         Preferred methods of rendering are ``ShowCreation`` and ``Uncreate``.
         FadeIn and FadeOut do not work very well.
+
+    Methods
+    -------
+
+    add_vertices(self)
+        Returns a list of `VMobject` which represents each of the vertices of
+        the graph. Does not include the labels for the vertices.
+    add_labels(self)
+        Returns a list of `VMobject` which represents each of the labels of the
+        the vertices.
+    add_edges_weights(self)
+        Returns a list of `VMobject` which represents the edges and weights of
+        the graph.
 
     Examples
     --------
 
     First, we create an unlabeled graph.
-
-    .. manim:: UnlabeledGraph
 
         class UnlabeledGraph(Scene):
             def construct(self):
@@ -82,8 +87,6 @@ class BasicGraph(VMobject, ABC):
 
     We can similarly create labeled graphs.
 
-    .. manim:: LabeledGraph
-
         class LabeledGraph(Scene):
             def construct(self):
                 graph = BasicGraph(
@@ -97,8 +100,6 @@ class BasicGraph(VMobject, ABC):
                 self.add(graph)
 
     We can change certain vertices and edges.
-
-    .. manim:: ChangeConfigs
 
         class ChangeConfigs(Scene):
             def construct(self):
@@ -118,8 +119,6 @@ class BasicGraph(VMobject, ABC):
                 self.add(graph)
 
     We can add nodes and edges to the graph.
-
-    .. manim:: AddingToGraph
 
         class AddingToGraph(Scene):
             def construct(self):
@@ -149,6 +148,12 @@ class BasicGraph(VMobject, ABC):
                 )
 
                 BasicGraph.basic_transform_expand(self, g1, g2)
+
+    Sources
+    -------
+
+        https://github.com/abhinandshibu/ThreeAnimators
+
     """
 
     def __init__(self,

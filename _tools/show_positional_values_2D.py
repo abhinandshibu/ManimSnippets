@@ -11,44 +11,34 @@ class ShowPositionalValues2d(Scene):
 
     https://github.com/abhinandshibu/ThreeAnimators
 
-    Methods
-    -------
-
-    show_positional_values_2d(obj)
-        Combines `show_critical_points_2d(obj)`, `show_half_length_2d(obj)`,
-        `show_critical_coordinates_2d(obj)` and returns one `VMobject`
-    show_critical_points_2d(obj)
-        Returns a `VMobject` consisting of a dot on all of the critical points
-        of the object passed in.
-    show_half_length_2d(obj)
-        Returns a `VMobject` consisting of the half the length of height and
-        width (as `Text`) and displays them along with lines in the bottom left.
-    show_critical_coordinates_2d(obj)
-        Returns a `VMobject` consisting of the coordinates values
-        (as `Text`) on all the critical points excluding midpoints.
-
-    Examples
-    --------
-
-    Showing all the positional attributes of a circle.
-
-    class PosOfCircle(Scene):
-        def construct(self):
-            circle = Circle()
-            self.add(circle)
-            self.add(ShowPositionalValues2d.show_positional_values_2d(circle))
-
-    Showing all of the critical points of a triangle
-
-    class CriticalPointsOfCircle(Scene):
-        def construct(self):
-            triangle = Polygon(RIGHT, 4*RIGHT+2*UP, LEFT+3*UP)
-            self.add(triangle)
-            self.add(ShowPositionalValues2d.show_critical_points_2d(triangle))
     """
 
     @staticmethod
     def show_positional_values_2d(obj):
+        """Combines `show_critical_points_2d(obj)`, `show_half_length_2d(obj)`,
+        `show_critical_coordinates_2d(obj)` and returns one `VMobject`.
+
+        Parameters
+        ----------
+
+        obj
+            A 2D `VMobject`.
+
+        Examples
+        --------
+
+        Showing all the positional attributes of a circle.
+
+        .. manim:: PosOfCircle
+
+            class PosOfCircle(Scene):
+                def construct(self):
+                    circle = Circle()
+                    self.add(circle)
+                    self.add(
+                        ShowPositionalValues2d.show_positional_values_2d(circle)
+                    )
+        """
         return VGroup(
             ShowPositionalValues2d.show_critical_points_2d(obj),
             ShowPositionalValues2d.show_half_length_2d(obj),
@@ -57,6 +47,30 @@ class ShowPositionalValues2d(Scene):
 
     @staticmethod
     def show_critical_points_2d(obj):
+        """Returns a `VMobject` consisting of a dot on all of the critical
+        points of `obj`.
+
+        Parameters
+        ----------
+
+        obj
+            A 2D `VMobject`.
+
+        Examples
+        --------
+
+        Showing all of the critical points of a triangle.
+
+        .. manim:: CriticalPointsOfTriangle
+
+            class CriticalPointsOfTriangle(Scene):
+                def construct(self):
+                    triangle = Polygon(RIGHT, 4*RIGHT+2*UP, LEFT+3*UP)
+                    self.add(triangle)
+                    self.add(
+                        ShowPositionalValues2d.show_critical_points_2d(triangle)
+                    )
+        """
         return VGroup(
             Dot(obj.get_critical_point(DOWN + LEFT)),
             Dot(obj.get_critical_point(DOWN)),
@@ -71,6 +85,31 @@ class ShowPositionalValues2d(Scene):
 
     @staticmethod
     def show_half_length_2d(obj):
+        """Returns a `VMobject` consisting of the half the length of height and
+        width (as `Text`) and displays them along with lines in the bottom left,
+        with respect to `obj`.
+
+        Parameters
+        ----------
+
+        obj
+            A 2D `VMobject`.
+
+        Examples
+        --------
+
+        Showing the lengths of a triangle.
+
+        .. manim:: HalfLengthsOfTriangle
+
+            class HalfLengthsOfTriangle(Scene):
+                def construct(self):
+                    triangle = Polygon(RIGHT, 4*RIGHT+2*UP, LEFT+3*UP)
+                    self.add(triangle)
+                    self.add(
+                        ShowPositionalValues2d.show_half_length_2d(triangle)
+                    )
+        """
         horizontal_distance = obj.get_width() / 2
         vertical_distance = obj.get_height() / 2
         horizontal_line = DashedLine(
@@ -93,6 +132,32 @@ class ShowPositionalValues2d(Scene):
 
     @staticmethod
     def show_critical_coordinates_2d(obj):
+        """Returns a `VMobject` consisting of the coordinates values (as `Text`)
+        on all the critical points excluding midpoints of `obj`.
+
+        Parameters
+        ----------
+
+        obj
+            A 2D `VMobject`.
+
+        Examples
+        --------
+
+        Showing the critical coordinates of a triangle.
+
+        .. manim:: ShowCriticalCoordinates
+
+            class ShowCriticalCoordinates(Scene):
+                def construct(self):
+                    triangle = Polygon(RIGHT, 4*RIGHT+2*UP, LEFT+3*UP)
+                    self.add(triangle)
+                    self.add(
+                        ShowPositionalValues2d.show_critical_coordinates_2d(
+                            triangle
+                        )
+                    )
+        """
         bottom_left = obj.get_critical_point(LEFT + DOWN).tolist()
         bottom_right = obj.get_critical_point(RIGHT + DOWN).tolist()
         top_left = obj.get_critical_point(LEFT + UP).tolist()
