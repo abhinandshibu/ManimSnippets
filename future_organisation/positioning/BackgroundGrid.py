@@ -1,5 +1,5 @@
 from manim import *
-from _tools.grid import Grid
+from _tools.help_with_positioning.show_background_grid import Grid
 
 
 class BackgroundGrid(Scene):

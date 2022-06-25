@@ -1,5 +1,5 @@
 from manim import *
-from _tools.grid import GridAxes
+from _tools.help_with_positioning.show_background_grid import GridAxes
 
 
 class BackgroundAxes(Scene):

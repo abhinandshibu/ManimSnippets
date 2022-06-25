@@ -1,15 +1,9 @@
 from abc import ABC
 from manim import *
 
-
 class GridAxes(VMobject, ABC):
     """Provides background axes which can be used to aid visual positioning
-    of objects.
-
-    Sources
-    -------
-
-    https://github.com/abhinandshibu/ThreeAnimators
+    of objects. 
 
     Examples
     --------
@@ -56,11 +50,6 @@ class GridAxes(VMobject, ABC):
 class Grid(GridAxes, ABC):
     """Provides a background grid which can be used to aid visual positioning
     of objects.
-
-    Sources
-    -------
-
-    https://github.com/abhinandshibu/ThreeAnimators
 
     Examples
     --------
