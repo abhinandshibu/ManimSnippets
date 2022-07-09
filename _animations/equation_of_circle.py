@@ -1,10 +1,14 @@
 from manim import *
+import random
 
 def fadeOutObjectsInDictionary(self, dictOfObjects):
     fadeOutObjectsInList(self, list(dictOfObjects.values()))
 
 def fadeOutObjectsInList(self, listOfObjects):
     self.play(*[FadeOut(obj) for obj in listOfObjects])
+
+def generatePointsOnCircle(radius, noOfPoints):
+    x = random.randrange
 
 class DerivationOfEquationOfCircle(Scene):
     def construct(self):
@@ -14,7 +18,9 @@ class DerivationOfEquationOfCircle(Scene):
         # fadeOutObjectsInDictionary(self, introDict)
 
         centerRadiusDict = self.drawCenterAndRadiusOfCircle()
-        self.rotateRadiusToFormCircle(radius=centerRadiusDict["radius"], centerPosition=centerRadiusDict["centerDot"].get_center())
+        fadeOutObjectsInList(self, [centerRadiusDict["radiusText"], centerRadiusDict["centerText"]])
+        centerRadiusDict = self.rotateRadiusToFormCircle(radius=centerRadiusDict["radiusLine"], centerPosition=centerRadiusDict["centerDot"].get_center())
+        # exampleDerivation(self, centerRadiusDict["radiusLine"], radiusLength, circle, xValue, yValue)
     
     def intro(self):
         text = Text("What is the equation \n of a circle?").move_to(RIGHT * 3)
@@ -28,29 +34,26 @@ class DerivationOfEquationOfCircle(Scene):
         }
 
     def drawCenterAndRadiusOfCircle(self):
+        RADIUS_LENGTH = 2
+        STARTING_ANGLE = 45 * DEGREES
+
         centerDot = Dot(color=ORANGE)
         centerText = Text("Center").scale(0.5).next_to(centerDot, DOWN)
         
         self.play(Write(centerDot), Write(centerText))
-        self.wait(0.5)
+        self.wait(1)
 
-        radius = Arrow(start=ORIGIN, end=[2,2,0], color=BLUE, buff=0)
+        radiusLine = Arrow(start=ORIGIN, end=[RADIUS_LENGTH,0,0], color=BLUE, buff=0).rotate(STARTING_ANGLE, about_point=centerDot.get_center())
+        radiusText = Text("r").scale(0.6).move_to([0.8, 1.2, 0])
         
-        self.play(Write(radius))
-        self.wait(0.5)
+        self.play(Write(radiusLine), Write(radiusText))
+        self.wait(1.5)
 
-        # self.play(
-        #     Rotate(
-        #         radius,
-        #         angle=360*DEGREES,
-        #         about_point=ORIGIN,
-        #     ),
-        #     run_time=3
-        # )
         return {
             "centerDot": centerDot, 
             "centerText": centerText, 
-            "radius": radius
+            "radiusLine": radiusLine,
+            "radiusText": radiusText
         }
 
     def rotateRadiusToFormCircle(self, radius, centerPosition):
@@ -72,10 +75,21 @@ class DerivationOfEquationOfCircle(Scene):
         self.add(circlePath)
         self.play(
             angleInDegrees.animate.set_value(360),
-            run_time=2.5
+            run_time=3.5
         )
 
-        self.wait(0.5)
+        self.wait(2)
+
+    def exampleDerivation(self, radiusLine, radiusLength, circle, xValue, yValue):
+        point = Dot().move_to([xValue, yValue, 0])
+        axes = Axes()
+        self.play(Write(axes), Write(point))
+
+
+
+    # Show a couple example points, that does not lie on the circle because 
+    # they do not satisfy the equation.
+
 
 
 
